@@ -12,10 +12,10 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Prilojenie/DockerDemoApp.csproj", "Prilojenie/"]
-RUN dotnet restore "./Prilojenie/DockerDemoApp.csproj"
+COPY ["DockerDemoApp/DockerDemoApp.csproj", "DockerDemoApp/"]
+RUN dotnet restore "./DockerDemoApp/DockerDemoApp.csproj"
 COPY . .
-WORKDIR "/src/Prilojenie"
+WORKDIR "/src/DockerDemoApp"
 RUN dotnet build "./DockerDemoApp.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Этот этап используется для публикации проекта службы, который будет скопирован на последний этап
